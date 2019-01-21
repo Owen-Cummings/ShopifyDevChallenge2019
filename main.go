@@ -65,12 +65,12 @@ func serverStart() (*chi.Mux, *mysql.Db){
 
 	//middleware
 	router.Use(
-		render.SetContentType(render.ContentTypeJSON),	// content-type headers for API
+		render.SetContentType(render.ContentTypeJSON),		// content-type headers for API
 		middleware.Throttle(4),					//limit actively processed requests to API to 4
-		middleware.Logger,								// log api calls to API
-		middleware.DefaultCompress,						// compress results
-		middleware.StripSlashes,						// remove path trailing slash and continue MUX routing
-		middleware.Recoverer,							//recover panics without server downtime
+		middleware.Logger,					// log api calls to API
+		middleware.DefaultCompress,				// compress results
+		middleware.StripSlashes,				// remove path trailing slash and continue MUX routing
+		middleware.Recoverer,					//recover panics without server downtime
 	)
 
 	// private route for graphql server using JWT for authentication
