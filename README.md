@@ -9,6 +9,13 @@ Requirements:
   - Download the project into your $GOPATH/src directory and run setup.sh to install all of the go dependencies
   - Configure the MySQL connection information for your testing environment
     - Run the attached SQL scripts in your database terminal to set up the required tables
+  - Generate self signed keys for TLS:
+```sh
+$ openssl genrsa -out server.key 2048
+$ openssl ecparam -genkey -name secp384r1 -out server.key
+$ openssl req -new -x509 -sha256 -key server.key -out server.crt -days 3650
+```
+  openssl genrsa -out server.key 2048
  - Run main.go and the server will be listening at https://localhost:4000/
  ```sh
 $ sh setup.sh
